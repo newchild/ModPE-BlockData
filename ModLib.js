@@ -377,14 +377,6 @@ function FurnaceIsMelting(id){
     return null;
 }
 
-function SignIsOnWall(id) {
-    if (id != 68 && id != 63)
-        return null;
-    if(id == 68)
-        return true;
-    return false;
-}
-
 function getFacingDirection(id, dataTag) {
     switch (id) {
         case 50:
@@ -415,6 +407,10 @@ function isAttachedToWall(id,dataTag){
         case 50:
             if(dataTag < 5)
                 return true;
+            return false;
+        case 68:
+            return true;
+        case 63:
             return false;
         default:
             return null;
@@ -464,11 +460,11 @@ function getCoreState(id, dataTag){
     if(id != 247)
         return null;
     switch(dataTag){
-        case 1:
+        case 0:
             return "Unused";
-        case 2:
+        case 1:
             return "Active";
-        case 3:
+        case 2:
             return "Used";
     }
 }
@@ -482,6 +478,7 @@ function isLiquid(id) {
 function isDangerous(id){
     if (id == 10 || id == 11 || id == 81 || id == 51)
         return true;
+    return false;
 }
 
 function BData(x,y,z){
@@ -492,7 +489,6 @@ function BData(x,y,z){
     this.Color = getWoolColor(this.ID, this.Data);
     this.isMature = isMature(this.ID,this.Data);
     this.isMelting = FurnaceIsMelting(this.ID);
-    this.isOnWall = SignIsOnWall(this.ID);
     this.FacingDirection = getFacingDirection(this.ID, this.Data);
     this.IsAttachedToWall = isAttachedToWall(this.ID, this.Data);
     this.SlabKind = getSlabTile(this.ID, this.Data);
