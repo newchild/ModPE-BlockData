@@ -144,14 +144,3 @@ function BData(x,y,z){
     this.WoodPlankType = getWoodPlankType(this.ID, this.Data);
     this.WoolColor = getWoolColor(this.ID, this.Data);
 }
-
-function useItem(x,y,z){
-    var myBlock = new BData(x, y, z);
-    if (myBlock.Name.toLowerCase() == "wool")
-        clientMessage(myBlock.Name + "->" + myBlock.WoolColor + " so Data is " + myBlock.Data);
-    if (myBlock.Name.toLowerCase() == "wooden plank")
-        clientMessage(myBlock.Name + "->" + myBlock.WoodPlankType + " so Data is " + myBlock.Data);
-    else
-        clientMessage(myBlock.Name);
-       
-}
