@@ -24,6 +24,15 @@ var Facing = {
     Down: 17
 };
 
+function isHead(id, dataTag) {
+    if (id != 26)
+        return null;
+    if (dataTag > 8) {
+        return true
+    }
+    return false;
+}
+
 function IdToName(id) {
     switch(id){
         case 0:
@@ -399,8 +408,18 @@ function getFacingDirection(id, dataTag) {
                 return Facing.Down;
             else
                 return Facing.Up;
+        case 26:
+            if (dataTag == 0 || dataTag == 8)
+                return Facing.South;
+            if (dataTag == 1 || dataTag == 9)
+                return Facing.West;
+            if (dataTag == 2 || dataTag == 10)
+                return Facing.North;
+            if (dataTag == 3 || dataTag == 11)
+                return Facing.East;
         default:
             return null;
+        
     }
 }
 
@@ -509,8 +528,9 @@ function getPlantKind(id, dataTag){
             case 5:
                 return "Peony"; 
         }
-        return null;
+        
     }
+    return null;
 }
 
 function BData(x,y,z){
@@ -529,4 +549,5 @@ function BData(x,y,z){
     this.NetherCoreState = getCoreState(this.ID, this.Data);
     this.isDangerous = isDangerous(this.ID);
     this.PlantKind = getPlantKind(this.ID, this.Data);
+    this.isBedHead = isHead(this.ID, this.Data);
 }
