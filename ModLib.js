@@ -262,6 +262,8 @@ function IdToName(id) {
             return "Block of Coal";
         case 174:
             return "Packed Ice";
+        case 175:
+            return "Huge Plant";
         case 243:
             return "Podzol";
         case 244:
@@ -481,6 +483,36 @@ function isDangerous(id){
     return false;
 }
 
+function getPlantKind(id, dataTag){
+    if(id == 31){
+        switch(dataTag){
+            case 0:
+                return "Shrub";
+            case 1:
+                return "Tall Grass";
+            case 2:
+                return "Fern";
+        }
+    }
+    if(id == 175){
+        switch(dataTag){
+            case 0:
+                return "Sunflower";
+            case 1:
+                return "Lilac";
+            case 2:
+                return "Grass";
+            case 3:
+                return "Fern";
+            case 4:
+                return "Rose Bush";
+            case 5:
+                return "Peony"; 
+        }
+        return null;
+    }
+}
+
 function BData(x,y,z){
     this.ID =  Level.getTile(x,y,z);
     this.Data = Level.getData(x,y,z);
@@ -496,4 +528,5 @@ function BData(x,y,z){
     this.LayerCount = getSnowLayerCount(this.ID, this.Data);
     this.NetherCoreState = getCoreState(this.ID, this.Data);
     this.isDangerous = isDangerous(this.ID);
+    this.PlantKind = getPlantKind(this.ID, this.Data);
 }
