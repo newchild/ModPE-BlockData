@@ -43,6 +43,10 @@ function Vector3(x, y, z) {
         return this.add(normalizedVector.multiplyWithNumber(distance));
     }
 
+    this.getYAngle = function(){
+        var scalarprod = (this.y)/(this.getLength()*(new Vector3(0,1,0)).getLength());
+        return Math.acos(scalarprod);
+    }
     this.compare = function (vector) {
         if (Math.round(this.x) == Math.round(vector.x) && Math.round(this.y) == Math.round(vector.y) && Math.round(this.z) == Math.round(vector.z))
             return true;
